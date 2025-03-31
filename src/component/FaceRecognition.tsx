@@ -10,15 +10,14 @@ const FaceRecognition: FC<Props> = ({ imageUrl, setResult }) => {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("Loading models...");
   const [matchResult, setMatchResult] = useState<string | null>(null);
-  const [isfound, setIsfound] = useState(false);
 
   useEffect(() => {
     const loadModels = async () => {
       try {
         await Promise.all([
-          faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
-          faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
-          faceapi.nets.ssdMobilenetv1.loadFromUri("/models"),
+          faceapi.nets.faceRecognitionNet.loadFromUri("/static/models"),
+          faceapi.nets.faceLandmark68Net.loadFromUri("/static/models"),
+          faceapi.nets.ssdMobilenetv1.loadFromUri("/static/models"),
         ]);
         setMessage("Models loaded. Analyzing face...");
         analyzeFace();
@@ -60,11 +59,9 @@ const FaceRecognition: FC<Props> = ({ imageUrl, setResult }) => {
           setMatchResult(bestMatch.toString());
           setResult(bestMatch.toString());
           setMessage("Face analysis complete.");
-          setIsfound(true);
+
           return;
         }
-
-        setIsfound(false);
       } catch (error) {
         console.error("Error analyzing face:", error);
         setMessage("Face analysis failed.");
@@ -76,12 +73,6 @@ const FaceRecognition: FC<Props> = ({ imageUrl, setResult }) => {
     loadModels();
   }, [imageUrl, setResult]);
 
-  const handleRetry = () => {
-    setMessage("");
-    setMatchResult(null);
-    setLoading(false);
-  };
-
   return (
     <div className="text-center p-4">
       {loading ? (
@@ -89,12 +80,6 @@ const FaceRecognition: FC<Props> = ({ imageUrl, setResult }) => {
       ) : matchResult ? (
         <p>Match Result: {matchResult}</p>
       ) : null}
-
-      {!isfound && (
-        <p className="cursor-pointer font-bold underline" onClick={handleRetry}>
-          Face not found, try again
-        </p>
-      )}
     </div>
   );
 };

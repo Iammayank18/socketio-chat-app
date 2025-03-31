@@ -16,7 +16,7 @@ const CaptureImage: FC<Props> = ({ onCapture }) => {
     if (!webcamRef.current) return;
     const imageSrc = webcamRef.current.getScreenshot(); // Capture as Base64 PNG
     const file = base64ToFile(webcamRef.current.getScreenshot()); // Capture as Base64 PNG
-    console.log(file);
+
     setImageFile(file);
     setImage(imageSrc);
   };

@@ -13,11 +13,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tensorflow/tfjs-node": "^4.22.0",
     "appwrite": "14.0.1",
     "dotenv": "^16.4.7",
     "face-api.js": "^0.22.2",
+    "fs": "^0.0.1-security",
     "jwt-decode": "^4.0.0",
     "jwt-encode": "^1.0.1",
+    "mongodb": "^6.15.0",
     "next": "^15.2.4",
     "node-appwrite": "11.1.1",
     "postcss": "^8.5.3",
