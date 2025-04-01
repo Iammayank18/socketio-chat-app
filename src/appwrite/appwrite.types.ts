@@ -118,7 +118,7 @@ export type RootUserDbType = {
       name: string;
       phone: string;
       role: string;
-    },
+    }
   ];
 };
 

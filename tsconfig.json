@@ -31,6 +31,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "server.mts"
-  ],
+, "src/appwrite/appwrite_server.ts", "src/appwrite/appwrite.config.ts", "src/appwrite/appwrite.types.ts"  ],
   "exclude": ["node_modules"]
 }
